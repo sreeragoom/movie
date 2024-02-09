@@ -1,0 +1,179 @@
+
+
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <title>Add Movie</title>
+    <head>
+    <meta charset="UTF-8">
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">-->
+<!--    <title>Restaurant Complaint Form</title>-->
+<!--    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <style>
+      html, body {
+      min-height: 100%;
+      }
+      body, div, form, input, select, p {
+      padding: 0;
+      margin: 0;
+      outline: none;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 14px;
+      color: #666;
+      line-height: 22px;
+      }
+      h1 {
+      margin: 15px 0;
+      font-weight: 400;
+      }
+      .testbox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: inherit;
+      padding: 3px;
+      }
+      form {
+      width: 100%;
+      padding: 20px;
+      background: #fff;
+      box-shadow: 0 2px 5px #ccc;
+      }
+      input, select, textarea {
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      }
+      input {
+      width: calc(100% - 10px);
+      padding: 5px;
+      }
+      select {
+      width: 100%;
+      padding: 7px 0;
+      background: transparent;
+      }
+      textarea {
+      width: calc(100% - 6px);
+ }
+      .item {
+      position: relative;
+      margin: 10px 0;
+      }
+      .item:hover p, .item:hover i {
+      color: #095484;
+      }
+      input:hover, select:hover, textarea:hover {
+      box-shadow: 0 0 5px 0 #095484;
+      }
+      .btn-block {
+      margin-top: 20px;
+      text-align: center;
+      }
+      button {
+      width: 150px;
+      padding: 10px;
+      border: none;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      background-color: #095484;
+      font-size: 16px;
+      color: #fff;
+      cursor: pointer;
+      }
+      button:hover {
+      background-color: #0666a3;
+      }
+      @media (min-width: 568px) {
+      .name-item, .city-item {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      }
+      .name-item input, .city-item input {
+      width: calc(50% - 20px);
+      }
+         .hidden {
+            display: none;
+        }
+      .city-item select {
+      width: calc(50% - 8px);
+      }
+      }
+    </style>
+   <script>
+        function fillSlug() {
+            // Get the value from the title input
+            var titleValue = document.getElementById('id_title').value;
+
+            // Convert the title to a slug (replace spaces with hyphens, lowercase)
+            var slugValue = titleValue.replace(/\s+/g, '-').toLowerCase();
+
+            // Set the slug value
+            document.getElementById('id_slug').value = slugValue;
+        }
+
+    document.getElementById('id_user').value = {{ request.user.id }};
+
+    </script>
+
+</head>
+<body>
+<div class="container" >
+<h2 style="color:lightblue;">Add Movie Details</h2>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {{ form.non_field_errors }}
+
+    <label for="id_title"><strong>Movie Name:</strong></label>
+    <input type="text" id="id_title" name="title" oninput="fillSlug()">
+    {{ form.title.errors }}
+    <label for="id_slug" class="hidden"><strong>Slug:</strong></label>
+    <input type="text" id="id_slug" name="slug" class="hidden">
+    {{ form.slug.errors }}
+<input type="hidden" name="user" value="{{ request.user.id }}">
+
+    <label for="{{ form.year.id_for_label }}" ><strong>Release Date(YYYY-MM-DD):</strong></label>
+    {{ form.year }}
+    {{ form.year.errors }}
+
+    <label for="{{ form.actors.id_for_label }}"><strong>Movie Actors Name:</strong></label>
+    {{ form.actors }}
+    {{ form.actors.errors }}
+
+
+    <label for="{{ form.category.id_for_label }}"><strong>Movie Genres:</strong></label>
+    {{ form.category }}
+    {{ form.category.errors }}
+
+    <label for="{{ form.poster.id_for_label }}"><strong>Movie Poster:</strong></label>
+    {{ form.poster }}
+    {{ form.poster.errors }}
+
+    <label for="{{ form.description.id_for_label }}"><strong>Movie Description:</strong></label>
+    {{ form.description }}
+    {{ form.description.errors }}
+	<label for="{{ form.links.id_for_label }}"><strong>Trailer Links:</strong></label>
+    {{ form.links }}
+    {{ form.links.errors }}
+
+    <button type="submit" >ADD</button>
+</form>
+</div>
+
+
+</body>
+</html>
+{% endblock %}

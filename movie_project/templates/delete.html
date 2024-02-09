@@ -1,0 +1,51 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+{% endblock %}
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+    <!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+</style>
+</head>
+<body>
+
+
+<div class="alert">
+<!--  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>-->
+  <strong>ARE YOU WANTS TO DELETE THIS MOVIE ?&nbsp;</strong>
+    <input type="submit"  class="btn btn-warning btn-lg">
+</div>
+
+</body>
+</html>
+
+
+</form>
+{% endblock %}

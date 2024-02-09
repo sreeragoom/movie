@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+ We have  variety of products.
+{% endblock %}
+{% block title%}
+search
+{% endblock %}
+{% block content%}
+<div >
+    <p class="text-center my_search_text">You have serach for: <b>"{{query}}"</b></p>
+</div>
+<div class="container" >
+    <div class="row mx_auto">
+          {% for movie in movies %}
+        <div class="my_bottom_margin col-9 col-sm12 col-md-4 col-md-12 col-lg-4" >
+            <div class="card text-center" style="min-width:10rem;min-height:20rem;">
+                <a href="{% url 'movie_app:detail' id=movie.id %}"><img class="card-img-top my_image" style="width:90;height:100" src="{{movie.poster.url}}" alt="" height="500" width="200"></a>
+                <div class="card-body" >
+                    <h4>{{movie.title}}</h4>
+                    <p>$-{{movie.year}}</p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="row mx-auto">
+            <p class="text-center my_search_text">0 result found</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

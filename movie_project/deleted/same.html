@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copy Input to Next Column</title>
+</head>
+<body>
+
+    <h2>Form</h2>
+
+    <table>
+        <tr>
+            <td><label for="column1">Column 1:</label></td>
+            <td><input type="text" id="column1" name="column1" oninput="copyInput(this, 'column2')"></td>
+        </tr>
+        <tr>
+            <td><label for="column2">Column 2:</label></td>
+            <td><input type="text" id="column2" name="column2"></td>
+        </tr>
+    </table>
+
+    <script>
+        function copyInput(source, targetId) {
+            // Get the value from the source input
+            var value = source.value;
+
+            // Set the value to the target input
+            document.getElementById(targetId).value = value;
+        }
+    </script>
+
+</body>
+</html>

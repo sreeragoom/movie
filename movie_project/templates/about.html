@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+{% endblock %}
+{% block content %}
+<section class="bg-light">
+        <div class="container pb-5">
+            <div class="row">
+                <div class="col-lg-5 mt-5">
+                    <div class="card mb-3">
+                        <img class="card-img img-fluid" src="{{ movies.poster.url }}" alt="Card image cap" style="height:600px">
+                    </div>
+                </div>
+
+
+                <div class="col-lg-7 mt-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <h1 class="h2"> {{movies.title}}</h1>
+
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <h6>Release date:</h6>
+                                </li>
+                                <li class="list-inline-item">
+                                    <p class="text-muted"><strong>{{movies.year}}</strong></p>
+                                </li>
+                            </ul>
+
+                            <h6>Description:</h6>
+                            <p>{{movies.description}}</p>
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <h6>Film Category :</h6>
+                                </li>
+                                <li class="list-inline-item">
+                                    <p class="text-muted"><strong>{{movies.category}}</strong></p>
+                                </li>
+                            </ul>
+
+                            <h6>Actors:</h6>
+                            <ul class="list-unstyled pb-3">
+                                <li>{{movies.actors}}</li>
+
+                            </ul>
+
+                            <form action="" method="post">
+                                    {% csrf_token %}
+
+                                <input type="hidden" name="product-title" value="Activewear">
+                                <div class="row">
+                                </div>
+                                {% if user.is_authenticated %}
+                                <div class="row pb-3">
+                                    <div class="col d-grid">
+
+                                       <button type="submit" class="btn btn-success btn-lg"  ><a href="{% url 'movie_app:update' movies.id %}"> Update</a></button>
+                                    </div>
+                                    <div class="col d-grid">
+                                        <button type="submit" class="btn btn-danger btn-lg" name="submit" ><a style="color:white" href="{% url 'movie_app:delete' movies.id %}" >Delete</a></button>
+                                    </div>
+
+                                </div>
+                                {% else %}
+                                <h5 style="color:red;">Please login </h5>
+                                {% endif %}
+                            </form>
+                             <h6 class="fa fa-youtube-play" >Trailer Link:</h6>
+                            <ul >
+                                <a  href="{{movies.links}}"><li  class="fab fa-youtube fa-lg " style="color:red" > &nbsp;</li><i>{{movies.links}}</i></a>
+
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

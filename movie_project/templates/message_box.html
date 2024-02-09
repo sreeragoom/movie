@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Honk&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap" rel="stylesheet">
+  <title>More Attractive Box with Submit</title>
+  <style>
+
+
+    .form-container {
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      transform: scale(1);
+      transition: transform 0.3s ease;
+    }
+
+    .form-container:hover {
+      transform: scale(1.02);
+    }
+
+    .input-box {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+      border: 2px solid #3498db;
+      border-radius: 8px;
+      outline: none;
+      font-size: 16px;
+      color: #333;
+    }
+
+    .submit-button {
+      background-color: black;
+      color: #fff;
+      padding: 15px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 18px;
+      transition: background-color 0.3s ease;
+    }
+
+    .submit-button:hover {
+      background-color: #9b59b6;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <div class="form-container">
+    <h1 style="color:green;font-family: 'Honk', system-ui;">Registration Success ! </h1>
+          <h4 style="color:aqua;font-family: 'Honk', system-ui;">Please Login </h4>
+
+
+      <a href="{% url 'user_app:login' %}"><button type="submit" class="submit-button" style="font-family: 'Bungee Spice', sans-serif;">Login</button></a>
+
+  </div>
+
+    </div>
+
+</body>
+</html>
+{% endblock %}

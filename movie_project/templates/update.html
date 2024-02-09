@@ -1,0 +1,187 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+{% endblock %}
+{% block content %}
+<br>
+<br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">-->
+      <head>
+    <title>Restaurant Complaint Form</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <style>
+      html, body {
+      min-height: 100%;
+      }
+      body, div, form, input, select, p {
+      padding: 0;
+      margin: 0;
+      outline: none;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 14px;
+      color: #666;
+      line-height: 22px;
+      }
+      h1 {
+      margin: 15px 0;
+      font-weight: 400;
+      }
+      .testbox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: inherit;
+      padding: 3px;
+      }
+      form {
+      width: 100%;
+      padding: 20px;
+      background: #fff;
+      box-shadow: 0 2px 5px #ccc;
+      }
+      input, select, textarea {
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      }
+      input {
+      width: calc(100% - 10px);
+      padding: 5px;
+      }
+      select {
+      width: 100%;
+      padding: 7px 0;
+      background: transparent;
+      }
+      textarea {
+      width: calc(100% - 6px);
+ }
+      .item {
+      position: relative;
+      margin: 10px 0;
+      }
+      .item:hover p, .item:hover i {
+      color: #095484;
+      }
+      input:hover, select:hover, textarea:hover {
+      box-shadow: 0 0 5px 0 #095484;
+      }
+      .btn-block {
+      margin-top: 20px;
+      text-align: center;
+      }
+      button {
+      width: 150px;
+      padding: 10px;
+      border: none;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      background-color: #095484;
+      font-size: 16px;
+      color: #fff;
+      cursor: pointer;
+      }
+      button:hover {
+      background-color: #0666a3;
+      }
+      @media (min-width: 568px) {
+      .name-item, .city-item {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      }
+       .hidden {
+        display: none;
+        }
+      .name-item input, .city-item input {
+      width: calc(50% - 20px);
+      }
+      .city-item select {
+      width: calc(50% - 8px);
+      }
+      }
+    </style>
+     <script>
+        function fillSlug() {
+            // Get the value from the title input
+            var titleValue = document.getElementById('id_title').value;
+
+            // Convert the title to a slug (replace spaces with hyphens, lowercase)
+            var slugValue = titleValue.replace(/\s+/g, '-').toLowerCase();
+
+            // Set the slug value
+            document.getElementById('id_slug').value = slugValue;
+        }
+    </script>
+</head>
+<body>
+    <div class="container ">
+        <h1 class="mb-4">Update Movie Details</h1>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="form-group">
+              <label for="id_title"><strong>Movie Name:</strong></label>
+                <input type="text" id="id_title" name="title" oninput="fillSlug()">
+            </div>
+            <div class="form-group">
+                <label for="id_slug" class="hidden"><strong>Slug:</strong></label>
+                <input type="text" id="id_slug" name="slug" class="hidden">
+            </div>
+
+             <div class="form-group">
+      <label for="{{ form.user.id_for_label }}"><strong>Movie user:</strong></label>
+    <input type="hidden" name="user" value="{{ request.user.id }}">
+    {{ form.user.errors }}
+            </div>
+
+
+            <div class="form-group">
+                <label for="description">Description:</label>
+                {{ form.description }}
+            </div>
+
+            <div class="form-group">
+                <label for="year">Year:</label>
+                {{ form.year }}
+            </div>
+          <div class="form-group">
+                <label for="poster">Poster:</label>
+                {{ form.poster }}
+            </div>
+          <div class="form-group">
+                <label for="actors">Actors:</label>
+                {{ form.actors }}
+            </div>
+          <div class="form-group">
+                <label for="links">Links:</label>
+                {{ form.links }}
+            </div>
+            <div class="form-group">
+                <label for="category">category:</label>
+                {{ form.category }}
+            </div>
+
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js (optional) -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+{% endblock %}
